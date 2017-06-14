@@ -1,4 +1,4 @@
-var socket = io.connect("http://127.0.0.1:3000");
+var socket = io.connect("/");
 
 //query DOM
 var output = document.getElementById('output'),
@@ -10,10 +10,11 @@ var output = document.getElementById('output'),
 
 sendBtn.addEventListener('click', function()
 {
-     socket.emit('chat', {handle:handle.value, message:message.value})
+     socket.emit('chat', {handle:handle.value, message:message.value});
+     message.value = "";
 })
 
-message.addEventListener('keypress', function()
+message.addEventListener('input', function()
 {
      socket.emit('typing', {handle:handle.value})
 })
